@@ -124,7 +124,7 @@ function Update-AzureDeploymentInformation {
     $jiraIds = @()
     $jiraIds += (Get-JiraIDsFromAzureChanges -SystemAccessToken $SystemAccessToken -AzureChangeUrl $AzureChangeUrl)
 
-    Write-Verbose("Jira IDs: " + $jiraIds)
+    Write-Verbose("Jira IDs: " + $jiraIds.Count)
 
     $splatVars = @{
         JiraDomain              = $JiraDomain
