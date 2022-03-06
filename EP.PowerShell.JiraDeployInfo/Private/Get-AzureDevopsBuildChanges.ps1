@@ -7,12 +7,12 @@ function Get-AzureDevopsBuildChanges {
         [string] $AzureChangeUrl 
     )
     
-    Write-Output($AzureChangeUrl)
+    Write-Verbose($AzureChangeUrl)
 
     $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($SystemAccessToken)"))
     $response = Invoke-RestMethod -Uri $AzureChangeUrl -Headers @{Authorization = "Basic $token" } -Method Get
-    Write-Verbose $response
+    Write-Verbose("Azure change response:" + $response)
     $build_changes = $response.fps.dataProviders.data.'ms.vss-traceability-web.traceability-run-changes-data-provider'.artifactsData.data | ForEach-Object { $_.message }
-    Write-Verbose ("[Build Changes] " + $build_changes)
+    Write-Verbose("[Build Changes] " + $build_changes)
     $build_changes
 }
