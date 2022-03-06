@@ -119,6 +119,8 @@ function Update-AzureDeploymentInformation {
         [string] $AzureChangeUrl = "$env:SYSTEM_COLLECTIONURI/$env:SYSTEM_TEAMPROJECT/_traceability/runview/changes?currentRunId=$($env:BUILD_BUILDID)&__rt=fps"
     )
 
+    Write-Output("Azure change url: " + $AzureChangeUrl)
+
     $jiraIds = @()
     $jiraIds += (Get-JiraIDsFromAzureChanges -SystemAccessToken $SystemAccessToken -AzureChangeUrl $AzureChangeUrl)
 
