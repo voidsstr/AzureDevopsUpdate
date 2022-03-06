@@ -124,6 +124,8 @@ function Update-AzureDeploymentInformation {
     $jiraIds = @()
     $jiraIds += (Get-JiraIDsFromAzureChanges -SystemAccessToken $SystemAccessToken -AzureChangeUrl $AzureChangeUrl)
 
+    Write-Output("Jira IDs: " + $jiraIds)
+
     $splatVars = @{
         JiraDomain              = $JiraDomain
         AtlassianClientId       = $AtlassianClientId
