@@ -1,0 +1,26 @@
+parameters:
+    - name: JiraState
+      type: string
+    - name: JiraEnvironment
+      type: string
+    - name: workingDirectory
+      type: string
+      default: $(Build.SourcesDirectory)
+
+steps:
+    - checkout: JiraDeployInfo
+    - task: PowerShell@2
+      displayName: Update JIRA status
+      inputs:
+        pwsh: true
+        targetType: filePath
+        filePath: DeploymentScript.ps1
+        workingDirectory: "${{ parameters.workingDirectory }}"
+      env:
+        SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        ATLASSIAN_CLIENT_ID: $(AtlassianClientId)
+        ATLASSIAN_CLIENT_SECRET: $(AtlassianClientSecret)
+        JIRA_STATE: "${{ parameters.JiraState }}"
+        JIRA_ENVIRONMENT: "${{ parameters.JiraEnvironment }}"
+        JIRA_DOMAIN: $(JiraDomain)
+      continueOnError: true
