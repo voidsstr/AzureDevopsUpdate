@@ -15,6 +15,6 @@ function Get-AtlassianBearerToken {
 
 
     $response = Invoke-RestMethod -uri "https://api.atlassian.com/oauth/token" -Method POST -Body $body -ContentType "application/json"
-    Write-Output "[Got Auth]"
+    Write-Debug "[Got Auth]"
     $response.access_token
 }

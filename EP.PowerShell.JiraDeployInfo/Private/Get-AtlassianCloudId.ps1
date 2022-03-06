@@ -4,7 +4,7 @@ function Get-AtlassianCloudId {
         $JiraDomain
     )
     $response = Invoke-RestMethod -uri "https://$JiraDomain/_edge/tenant_info"
-    Write-Output ("[JIRA CLOUD RESPONSE] " + $response)
-    Write-Output ("[JIRA CLOUD ID] " + $response.cloudId)
+    Write-Debug ("[JIRA CLOUD RESPONSE] " + $response)
+    Write-Debug ("[JIRA CLOUD ID] " + $response.cloudId)
     $response.cloudId
 }
