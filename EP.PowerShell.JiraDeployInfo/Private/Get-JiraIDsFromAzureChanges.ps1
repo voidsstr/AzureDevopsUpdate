@@ -7,7 +7,7 @@ function Get-JiraIDsFromAzureChanges {
         [string] $AzureChangeUrl
     )
 
-    $jiraIDs = @()
+    $jiraIDs = @("PT-467")
     Get-AzureDevopsBuildChanges -SystemAccessToken $SystemAccessToken -AzureChangeUrl $AzureChangeUrl | ForEach-Object {
         Find-JiraIDs ($_) | ForEach-Object {
             $jiraIDs += $_.Value.ToUpper()
