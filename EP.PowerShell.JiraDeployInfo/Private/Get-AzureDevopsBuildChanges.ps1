@@ -17,7 +17,7 @@ function Get-AzureDevopsBuildChanges {
 
     $build_changes = $response.fps.dataProviders.data.'ms.vss-traceability-web.traceability-run-changes-data-provider'.artifactsData | ForEach-Object { $_.artifactVersion.id }
 
-    Write-Verbose("[Build Changes count] " + ($build_changes.Count)
+    Write-Verbose("[Build Changes count] " + $build_changes.Count)
 
     Write-Verbose("[Build Changes] " + ($build_changes | ConvertTo-Json -Depth 100))
 
